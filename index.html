@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok HD Assistant - Anti Kompresi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #0f0f0f;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: #1a1a1a;
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid #333;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .card h2 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #4facfe;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #ccc;
+            margin-bottom: 6px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 12px;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: #4facfe;
+        }
+
+        .result {
+            background: #0a0a0a;
+            border: 1px solid #00f2fe33;
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .result span {
+            color: #00f2fe;
+            font-weight: bold;
+        }
+
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 10px 0;
+            border-bottom: 1px solid #222;
+            font-size: 13px;
+            color: #ddd;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li::before {
+            content: "✅ ";
+        }
+
+        .warning {
+            background: #1a0f0f;
+            border: 1px solid #ff444433;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 12px;
+            color: #ff9999;
+            margin-top: 12px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            border: none;
+            border-radius: 12px;
+            color: #000;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .btn:active {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 TikTok HD Assistant</h1>
+        <p class="subtitle">Tools Anti Kompresi + Smooth Upload</p>
+
+        <!-- Kalkulator Bitrate -->
+        <div class="card">
+            <h2>📊 Kalkulator Bitrate Ideal</h2>
+            <label>Resolusi Video</label>
+            <select id="resolution">
+                <option value="1080">1080p (1920×1080)</option>
+                <option value="720">720p (1280×720)</option>
+                <option value="4k">4K (3840×2160)</option>
+            </select>
+
+            <label>Frame Rate (FPS)</label>
+            <select id="fps">
+                <option value="30">30 FPS</option>
+                <option value="60">60 FPS</option>
+            </select>
+
+            <button class="btn" onclick="hitungBitrate()">Hitung Bitrate Optimal</button>
+            <div class="result" id="bitrateResult" style="display: none;"></div>
+        </div>
+
+        <!-- Checklist Upload HD -->
+        <div class="card">
+            <h2>📋 Checklist Upload HD</h2>
+            <ul class="checklist">
+                <li>Gunakan resolusi 1080×1920 (9:16)</li>
+                <li>Export dengan codec H.264 + MP4</li>
+                <li>Bitrate minimal 10 Mbps (20 Mbps lebih baik)</li>
+                <li>Frame rate 30 FPS (60 FPS jika ada banyak gerakan)</li>
+                <li>Ukuran file di bawah 287 MB</li>
+                <li>Aktifkan "Upload HD" di pengaturan TikTok</li>
+                <li>Upload lewat WiFi stabil, jangan data seluler</li>
+                <li>Hindari edit ulang di TikTok setelah upload</li>
+            </ul>
+        </div>
+
+        <!-- Tips Render Smooth -->
+        <div class="card">
+            <h2>⚡ Tips Render Smooth</h2>
+            <ul class="checklist">
+                <li>Gunakan bitrate konstan (CBR) bukan VBR</li>
+                <li>Render di resolusi asli, jangan upscale</li>
+                <li>Matikan efek sharpening berlebihan</li>
+                <li>Gunakan warna natural, hindari over-saturation</li>
+                <li>Export langsung dari aplikasi editing, jangan screen record</li>
+            </ul>
+            <div class="warning">
+                ⚠️ TikTok akan selalu melakukan kompresi. Tools ini meminimalkan penurunan kualitas, bukan menghilangkan kompresi 100%.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function hitungBitrate() {
+            const resolution = document.getElementById('resolution').value;
+            const fps = document.getElementById('fps').value;
+            
+            let baseBitrate = 0;
+            
+            switch(resolution) {
+                case '1080':
+                    baseBitrate = fps === '30' ? 10 : 20;
+                    break;
+                case '720':
+                    baseBitrate = fps === '30' ? 5 : 10;
+                    break;
+                case '4k':
+                    baseBitrate = fps === '30' ? 35 : 68;
+                    break;
+            }
+            
+            const resultDiv = document.getElementById('bitrateResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <strong>Bitrate Optimal:</strong> <span>${baseBitrate} Mbps</span><br>
+                <strong>Resolusi:</strong> ${resolution === '1080' ? '1920×1080' : resolution === '720' ? '1280×720' : '3840×2160'}<br>
+                <strong>Frame Rate:</strong> ${fps} FPS<br>
+                <strong>Format:</strong> MP4 (H.264)<br>
+                <strong>Rekomendasi:</strong> Gunakan CBR ${baseBitrate} Mbps di setting render
+            `;
+        }
+    </script>
+</body>
+</html>
